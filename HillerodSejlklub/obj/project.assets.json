@@ -8,19 +8,19 @@
     "net8.0": []
   },
   "packageFolders": {
-    "C:\\Users\\Max_M\\.nuget\\packages\\": {}
+    "C:\\Users\\TobiB\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Max_M\\source\\repos\\HillerodSejlklub\\HillerodSejlklub\\HillerodSejlklub.csproj",
+      "projectUniqueName": "C:\\Users\\TobiB\\source\\repos\\HillerodSejlklub\\HillerodSejlklub\\HillerodSejlklub.csproj",
       "projectName": "HillerodSejlklub",
-      "projectPath": "C:\\Users\\Max_M\\source\\repos\\HillerodSejlklub\\HillerodSejlklub\\HillerodSejlklub.csproj",
-      "packagesPath": "C:\\Users\\Max_M\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Max_M\\source\\repos\\HillerodSejlklub\\HillerodSejlklub\\obj\\",
+      "projectPath": "C:\\Users\\TobiB\\source\\repos\\HillerodSejlklub\\HillerodSejlklub\\HillerodSejlklub.csproj",
+      "packagesPath": "C:\\Users\\TobiB\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\TobiB\\source\\repos\\HillerodSejlklub\\HillerodSejlklub\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Max_M\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\TobiB\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
