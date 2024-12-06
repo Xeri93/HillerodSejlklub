@@ -10,13 +10,24 @@ namespace HillerodSejlklub
     {
         public List<Medlem> medlemmer;
 
-        public MedlemRepo() 
+        public MedlemRepo()
         {
             medlemmer = new List<Medlem>();
         }
-        public void CreateMember(Medlem medlem)
+        public void CreateMedlem(Medlem medlem)
         {
             medlemmer.Add(medlem);
+        }
+        public Medlem? GetMedlem(int id)
+        {
+            foreach (var m in medlemmer)
+            {
+                if (m.Id.Equals(id))
+                {
+                    return m;
+                }
+            }
+            return null;
         }
     }
 }

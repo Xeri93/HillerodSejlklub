@@ -14,13 +14,14 @@ namespace HillerodSejlklub
         public string Tlf { get; set; }
         public bool HarEgenBåd { get; set; }
 
-       public Medlem() { }
-        //public Medlem(int id, string navn, string email, string tlf, bool harEgenBåd)
-        //{
-        //    Id = id;
-        //    Navn = navn;
-        //    Email = email;
-        //    Tlf = tlf;
-        //    HarEgenBåd = harEgenBåd;
+        public Medlem() { }
+        public Medlem(int id, string navn, string email, string tlf, bool harEgenBåd)
+        {
+            Id = id;
+            Navn = navn;
+            Email = email;
+            Tlf = tlf;
+            HarEgenBåd = harEgenBåd;
+        }
     }
 }
