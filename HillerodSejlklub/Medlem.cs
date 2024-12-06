@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HillerodSejlklub
 {
-    internal class Medlem
+    public class Medlem
     {
     }
 }
