@@ -8,5 +8,19 @@ namespace HillerodSejlklub
 {
     public class Medlem
     {
+        public int Id { get; set; }
+        public string Navn { get; set; }
+        public string Email { get; set; }
+        public string Tlf { get; set; }
+        public bool HarEgenBåd { get; set; }
+
+       public Medlem() { }
+        //public Medlem(int id, string navn, string email, string tlf, bool harEgenBåd)
+        //{
+        //    Id = id;
+        //    Navn = navn;
+        //    Email = email;
+        //    Tlf = tlf;
+        //    HarEgenBåd = harEgenBåd;
     }
 }

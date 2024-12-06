@@ -8,5 +8,15 @@ namespace HillerodSejlklub
 {
     public class MedlemRepo
     {
+        public List<Medlem> medlemmer;
+
+        public MedlemRepo() 
+        {
+            medlemmer = new List<Medlem>();
+        }
+        public void CreateMember(Medlem medlem)
+        {
+            medlemmer.Add(medlem);
+        }
     }
 }
