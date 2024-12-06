@@ -8,5 +8,20 @@ namespace HillerodSejlklub
 {
     public class BådRepo
     {
+        private List<Båd> både;
+
+        public BådRepo()
+        {
+            både = new List<Båd>();
+        }
+
+        //Create
+        public void AddBåd(Båd båd)
+        {
+            både.Add(båd);
+        }
+        
+        //Read
+
     }
 }
