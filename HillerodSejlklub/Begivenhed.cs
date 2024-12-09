@@ -11,7 +11,7 @@ namespace HillerodSejlklub
         public int Id;
         public string Titel;
         public DateTime Dato;
-		
+ 
 
 		public Begivenhed() { }
 
