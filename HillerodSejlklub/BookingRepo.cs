@@ -59,6 +59,5 @@ namespace HillerodSejlklub
 			}
 			return null;
 		}
-
 	}
 }
