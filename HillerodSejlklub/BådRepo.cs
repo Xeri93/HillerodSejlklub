@@ -5,6 +5,7 @@ using System.Linq;
 using System.Reflection;
 using System.Reflection.Metadata.Ecma335;
 using System.Text;
+using System.Threading.Channels;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 //Codet af Max
@@ -12,6 +13,7 @@ namespace HillerodSejlklub
 {
     public class BådRepo
     {
+
         private List<Båd> både;
 
         public BådRepo()
@@ -71,6 +73,32 @@ namespace HillerodSejlklub
                 }
             }
             return false;
+        }
+        //Create Vedligeholdelseslog
+        public bool UpdateVedligeholdelseslog(int id, string UpdateVedligeholdelseslog)
+        {
+            foreach (Båd båd in både)
+            {
+                if (båd.Id == id)
+                {
+                    båd.Vedligeholdelseslog = UpdateVedligeholdelseslog;
+                    return true;
+                }
+            }
+            return false;
+        }
+        //Read Vedligeholdelseslog
+        public Båd? PrintVedligeholdelseslog(int id)
+        { 
+            foreach (Båd båd in både)
+            {
+                if (båd.Id == id)
+                {
+                    Console.WriteLine(båd.Vedligeholdelseslog);
+                    return null;
+                }
+            }
+            return null;
         }
     }
 }

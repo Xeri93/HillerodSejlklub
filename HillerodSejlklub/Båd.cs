@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 //Codet af Max
 namespace HillerodSejlklub
 {
@@ -18,6 +21,8 @@ namespace HillerodSejlklub
         public string Byggeår { get; set; }
         public bool ErLejebåd { get; set; }
         public bool ErBooket { get; set; }
+        public bool ErSejlklar { get; set; }
+        public string Vedligeholdelseslog { get; set; }
 
         public Båd( int id, string name, string bådType, string model, string sejlnummer,
             string motoroplysning, string mål, string byggeår, bool erLejebåd)
@@ -31,7 +36,13 @@ namespace HillerodSejlklub
             Mål = mål;
             Byggeår = byggeår;
             ErLejebåd = erLejebåd;
+            ErSejlklar = true;
+            Vedligeholdelseslog = "";
         }
-
+        public override string ToString()
+        {
+            return $"Id:{Id}, Navn: {Name}, BådType: {BådType}, Model: {Model}, Sejlnummer: {Sejlnummer}, " +
+                        $"Motor: {Motoroplysning}, Mål: {Mål}, Byggeår: {Byggeår}, ErLejbåd: {ErLejebåd}";
+        }
     }
 }
