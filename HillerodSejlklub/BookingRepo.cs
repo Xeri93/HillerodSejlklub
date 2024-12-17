@@ -17,7 +17,7 @@ namespace HillerodSejlklub
 			bookings.Add(booking);
 		}
 
-		// Går igennem listen af bookings, hvis metoden finder id'et så remover den bookingen, hvis der ikke er matchene id returner metoden false.
+		// Remove booking
 		public bool RemoveBooking(int id)
 		{
 			foreach (Booking booking in bookings)
@@ -30,7 +30,7 @@ namespace HillerodSejlklub
 			return false;
 		}
 
-		//Går igennem listen af bookings, hvis metoden finder id'et opdatere metoden bookingen, hvis der ikke er matchene id returnere metoden false.
+		// Update booking
 		public bool UpdatedBooking(int id, Booking updatedBooking)
 		{
 			foreach (Booking booking in bookings)
@@ -47,10 +47,10 @@ namespace HillerodSejlklub
 			return false;
 		}
 
-		//Går igennem listen af bookings, hvis metoden finder id'et så returnere den bookingen objektet, hvis der ikke er matchene id returner metoden null.
+		// Read booking
 		public Booking? ReadBooking(int id)
 		{
-			foreach(Booking booking in bookings)
+			foreach (Booking booking in bookings)
 			{
 				if (booking.Id == id)
 				{
@@ -59,5 +59,19 @@ namespace HillerodSejlklub
 			}
 			return null;
 		}
+		public List<Booking> SearchMedlem(Medlem medlem)
+		{
+			List<Booking> result = new List<Booking>();
+
+			foreach (Booking booking in bookings)
+			{
+				if (booking.Medlem == medlem)
+				{
+					result.Add(booking);
+				}
+			}
+			return result;
+		}
 	}
+
 }

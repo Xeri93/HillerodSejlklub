@@ -6,13 +6,12 @@ using System.Threading.Tasks;
 
 namespace HillerodSejlklub
 {
-    public class Blog
-    {
+	public class Blog
+	{
 		public int Id;
 		public string Titel;
 		public DateTime Dato;
-		public Begivenhed Begivenhed;
-
+		public Dictionary<int, Begivenhed> begivenhedDict = new Dictionary<int, Begivenhed>();
 
 		public Blog() { }
 
@@ -23,53 +22,49 @@ namespace HillerodSejlklub
 			Dato = dato;
 		}
 
-		public List<Begivenhed> begivenhedList = new List<Begivenhed>();
-
-		// Adds begivenhed
+		// Tilføj begivenhed
 		public void AddBegivenhed(Begivenhed begivenhed)
 		{
-			begivenhedList.Add(begivenhed);
+			begivenhedDict[begivenhed.Id] = begivenhed;
 		}
 
-		// Går igennem listen af begivenheder, hvis metoden finder id'et så remover den begivenheden, hvis der ikke er matchene id returner metoden false.
+		// Fjern begivenhed
 		public bool RemoveBegivenhed(int id)
 		{
-			foreach (Begivenhed begivenhed in begivenhedList)
-			{
-				if (begivenhed.Id == id)
-				{
-					return begivenhedList.Remove(begivenhed);
-				}
-			}
-			return false;
+			return begivenhedDict.Remove(id);
 		}
 
-		//Går igennem listen af begivenheder, hvis metoden finder id'et opdatere metoden begivenheden, hvis der ikke er matchene id returnere metoden false.
+		// Opdater begivenhed
 		public bool UpdateBegivenhed(int id, Begivenhed updatedBegivenhed)
 		{
-			foreach (Begivenhed begivenhed in begivenhedList)
+			if (begivenhedDict.ContainsKey(id))
 			{
-				if (begivenhed.Id == id)
-				{
-					begivenhed.Id = updatedBegivenhed.Id;
-					begivenhed.Titel = updatedBegivenhed.Titel;
-					begivenhed.Dato = updatedBegivenhed.Dato;
-				}
+				begivenhedDict[id] = updatedBegivenhed;
+				return true;
 			}
 			return false;
 		}
 
-		//Går igennem listen af begivenheder, hvis metoden finder id'et så returnere den begivenhed objektet, hvis der ikke er matchene id returner metoden null.
+		// Læs begivenhed
 		public Begivenhed? ReadBegivenhed(int id)
 		{
-			foreach (Begivenhed begivenhed in begivenhedList)
+			begivenhedDict.TryGetValue(id, out Begivenhed? begivenhed);
+			return begivenhed;
+		}
+
+		// filtrerer efter dato
+		public List<Begivenhed> BegivenhedDatoFilter(DateTime filterDato)
+		{
+			List<Begivenhed> filtreredeBegivenheder = new List<Begivenhed>();
+
+			foreach (var begivenhed in begivenhedDict.Values)
 			{
-				if (begivenhed.Id == id)
+				if (begivenhed.Dato.Date > filterDato.Date)
 				{
-					return begivenhed;
+					filtreredeBegivenheder.Add(begivenhed);
 				}
 			}
-			return null;
+			return filtreredeBegivenheder;
 		}
 	}
 }
