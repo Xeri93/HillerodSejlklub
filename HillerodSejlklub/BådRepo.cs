@@ -75,7 +75,7 @@ namespace HillerodSejlklub
             return false;
         }
         //Create Vedligeholdelseslog
-        public bool UpdateVedligeholdelseslog(int id, string UpdateVedligeholdelseslog)
+        public bool UpdateVedligeholdelseslog(int id, string UpdateVedligeholdelseslog, bool erSejlklar)
         {
             foreach (Båd båd in både)
             {
@@ -95,6 +95,7 @@ namespace HillerodSejlklub
                 if (båd.Id == id)
                 {
                     Console.WriteLine(båd.Vedligeholdelseslog);
+                    Console.WriteLine(båd.ErSejlklar);
                     return null;
                 }
             }

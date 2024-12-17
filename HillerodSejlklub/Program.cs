@@ -12,7 +12,7 @@
             BådRepo bådrepo = new BådRepo();
             bådrepo.CreateBåd(båd);
             Console.WriteLine(bådrepo.ReadBåd(1));
-            bådrepo.UpdateVedligeholdelseslog(1, "Der er noget galt med denne båd");
+            bådrepo.UpdateVedligeholdelseslog(1, "Der er noget galt med denne båd", true);
             Console.WriteLine(bådrepo.PrintVedligeholdelseslog(1));
 
             Console.WriteLine("** båd test slut **");
