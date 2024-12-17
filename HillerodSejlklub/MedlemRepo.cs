@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace HillerodSejlklub
 {
+    //Kodeansvarlig - Tobias
     public class MedlemRepo
     {
         public List<Medlem> medlemmer;

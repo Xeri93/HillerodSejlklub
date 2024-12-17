@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace HillerodSejlklub
 {
+    //Kodeansvarlig - Tobias
     public class Medlem
     {
         public int Id { get; set; }
@@ -22,6 +23,10 @@ namespace HillerodSejlklub
             Email = email;
             Tlf = tlf;
             HarEgenBåd = harEgenBåd;
+        }
+        public override string ToString()
+        {
+            return $"{Id}\n{Navn}\n{Email}\n{Tlf}\n{HarEgenBåd}";
         }
     }
 }
