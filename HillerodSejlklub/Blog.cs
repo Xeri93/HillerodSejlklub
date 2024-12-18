@@ -10,18 +10,20 @@ namespace HillerodSejlklub
 	{
 		public int Id;
 		public string Titel;
-		public DateTime Dato;
 		public Dictionary<int, Begivenhed> begivenhedDict = new Dictionary<int, Begivenhed>();
 
 		public Blog() { }
 
-		public Blog(int id, string titel, DateTime dato)
+		public Blog(int id, string titel)
 		{
 			Id = id;
 			Titel = titel;
-			Dato = dato;
 		}
 
+		public override string ToString()
+		{
+			return $"Id: {Id}, Titel: {Titel}";
+		}
 		// Tilføj begivenhed
 		public void AddBegivenhed(Begivenhed begivenhed)
 		{
@@ -53,18 +55,18 @@ namespace HillerodSejlklub
 		}
 
 		// filtrerer efter dato
-		public List<Begivenhed> BegivenhedDatoFilter(DateTime filterDato)
-		{
-			List<Begivenhed> filtreredeBegivenheder = new List<Begivenhed>();
+		//public List<Begivenhed> BegivenhedDatoFilter(DateTime filterDato)
+		//{
+		//	List<Begivenhed> filtreredeBegivenheder = new List<Begivenhed>();
 
-			foreach (var begivenhed in begivenhedDict.Values)
-			{
-				if (begivenhed.Dato.Date > filterDato.Date)
-				{
-					filtreredeBegivenheder.Add(begivenhed);
-				}
-			}
-			return filtreredeBegivenheder;
-		}
+		//	foreach (var begivenhed in begivenhedDict.Values)
+		//	{
+		//		if (begivenhed.Dato.Date > filterDato.Date)
+		//		{
+		//			filtreredeBegivenheder.Add(begivenhed);
+		//		}
+		//	}
+		//	return filtreredeBegivenheder;
+		//}
 	}
 }

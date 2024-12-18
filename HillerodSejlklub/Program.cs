@@ -16,6 +16,36 @@
             Console.WriteLine(bådrepo.PrintVedligeholdelseslog(1));
 
             Console.WriteLine("** båd test slut **");
+
+
+            //Create ny blog og begivenhed - Simon
+            Console.WriteLine();
+            Console.WriteLine("Begivenhed start");
+
+            Blog blog = new Blog(1, "Sejlads nyheder");
+            Begivenhed begivenhed1 = new Begivenhed(blog, 1, "Sport bådsejlads");
+            Begivenhed begivenhed2 = new Begivenhed(blog, 2, "Træning");
+            
+            // Add begivenhed til blog
+            blog.AddBegivenhed(begivenhed1);
+            blog.AddBegivenhed(begivenhed2);
+
+            foreach (var begivenhed in blog.begivenhedDict.Values)
+            {
+                Console.WriteLine(begivenhed.ToString());
+            }
+
+            Console.WriteLine("Begivenhed slut");
+
+            Console.WriteLine();
+            Console.WriteLine("Booking start");
+            Medlem medlem = new Medlem(1, "Jens", "Jens123@gmail.com", "78609520", false);
+			DateTime bookingDato = new DateTime(2024, 12, 18, 14, 30, 0);
+			Booking booking1 = new Booking(1, medlem, båd, bookingDato, true);
+            BookingRepo bookingRepo = new BookingRepo();
+            bookingRepo.AddBooking(booking1);
+            Console.WriteLine(booking1.ToString());
+			Console.WriteLine("Booking slut");
         }
     }
 }

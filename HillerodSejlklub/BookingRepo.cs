@@ -38,7 +38,7 @@ namespace HillerodSejlklub
 				if (booking.Id == id)
 				{
 					booking.Id = updatedBooking.Id;
-					booking.Dato = updatedBooking.Dato;
+					booking.BookingDato = updatedBooking.BookingDato;
 					booking.ErGodkendt = updatedBooking.ErGodkendt;
 
 					return true;
@@ -59,6 +59,8 @@ namespace HillerodSejlklub
 			}
 			return null;
 		}
+
+		// Search medlem
 		public List<Booking> SearchMedlem(Medlem medlem)
 		{
 			List<Booking> result = new List<Booking>();
