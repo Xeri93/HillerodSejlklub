@@ -23,10 +23,12 @@
             Console.WriteLine("Begivenhed start");
 
             Blog blog = new Blog(1, "Sejlads nyheder");
-            Begivenhed begivenhed1 = new Begivenhed(blog, 1, "Sport bådsejlads");
-            Begivenhed begivenhed2 = new Begivenhed(blog, 2, "Træning");
+			DateTime begivenhedDato1 = new DateTime(2024, 11, 18, 8, 30, 0);
+            DateTime begivenhedDato2 = new DateTime(2024, 11, 19, 9, 0, 0);
+			Begivenhed begivenhed1 = new Begivenhed(blog, 1, begivenhedDato1, "Sport bådsejlads");
+            Begivenhed begivenhed2 = new Begivenhed(blog, 2, begivenhedDato2, "Træning");
             
-            // Add begivenhed til blog
+            // Add begivenhed til blog - Simon
             blog.AddBegivenhed(begivenhed1);
             blog.AddBegivenhed(begivenhed2);
 
@@ -34,18 +36,21 @@
             {
                 Console.WriteLine(begivenhed.ToString());
             }
-
             Console.WriteLine("Begivenhed slut");
 
+            // Booking - Simon
             Console.WriteLine();
             Console.WriteLine("Booking start");
+
             Medlem medlem = new Medlem(1, "Jens", "Jens123@gmail.com", "78609520", false);
 			DateTime bookingDato = new DateTime(2024, 12, 18, 14, 30, 0);
 			Booking booking1 = new Booking(1, medlem, båd, bookingDato, true);
             BookingRepo bookingRepo = new BookingRepo();
             bookingRepo.AddBooking(booking1);
             Console.WriteLine(booking1.ToString());
+
 			Console.WriteLine("Booking slut");
+
         }
     }
 }

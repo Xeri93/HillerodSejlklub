@@ -10,20 +10,22 @@ namespace HillerodSejlklub
 	{
 		public Blog Blog { get; set; }
 		public int Id { get; set; }
+		public DateTime BegivenhedDato { get; set; }
 		public string Titel { get; set; }
 
 		public Begivenhed() { }
 
-		public Begivenhed(Blog blog, int id, string titel)
+		public Begivenhed(Blog blog, int id, DateTime begivenhedDato, string titel)
 		{
 			Blog = blog;
 			Id = id;
+			BegivenhedDato = begivenhedDato;
 			Titel = titel;
 		}
 
 		public override string ToString()
 		{
-			return $"Blog: {Blog}, ID: {Id}, Titel: {Titel}";
+			return $"Blog: {Blog}, ID: {Id}, Dato: {BegivenhedDato.ToString("yyyy-MM-dd HH:mm")}, Titel: {Titel}";
 		}
 	}
 }
