@@ -60,5 +60,14 @@ namespace HillerodSejlklub
                 }
                 return null;
             }
+        public Medlem? SearchMedlemByEmail(string email)
+        {
+            foreach (var m in medlemmer)
+            {
+                if (m.Email.Equals(email))
+                    return m;
+            }
+            return null;
+        }
     }
 }
