@@ -4,7 +4,7 @@
     {
         static void Main()
         {
-            //Create ny båd - Max
+            //Create ny båd
             Console.WriteLine("** båd test start **");
 
             Båd båd = new Båd(1, "Armadillo", "Sejlskib", "xdd", "123"
@@ -18,17 +18,17 @@
             Console.WriteLine("** båd test slut **");
 
 
-            //Create ny blog og begivenhed - Simon
+            //Create ny blog og begivenhed
             Console.WriteLine();
-            Console.WriteLine("Begivenhed start");
+            Console.WriteLine("Begivenhed start\n");
 
-            Blog blog = new Blog(1, "Sejlads nyheder");
+            Blog blog = new Blog(1, "Hillerød sejlklub");
             DateTime begivenhedDato1 = new DateTime(2024, 11, 18, 8, 30, 0);
             DateTime begivenhedDato2 = new DateTime(2024, 11, 19, 9, 0, 0);
-            Begivenhed begivenhed1 = new Begivenhed(blog, 1, begivenhedDato1, "Sport bådsejlads");
-            Begivenhed begivenhed2 = new Begivenhed(blog, 2, begivenhedDato2, "Træning");
+            Begivenhed begivenhed1 = new Begivenhed(1, begivenhedDato1, "Sport bådsejlads");
+            Begivenhed begivenhed2 = new Begivenhed(2, begivenhedDato2, "Træning");
 
-            // Add begivenhed til blog - Simon
+            // Add begivenhed til blog
             blog.AddBegivenhed(begivenhed1);
             blog.AddBegivenhed(begivenhed2);
 
@@ -36,11 +36,11 @@
             {
                 Console.WriteLine(begivenhed.ToString());
             }
-            Console.WriteLine("Begivenhed slut");
+            Console.WriteLine("\nBegivenhed slut");
 
-            // Booking - Simon
+            // Booking
             Console.WriteLine();
-            Console.WriteLine("Booking start");
+            Console.WriteLine("Booking start\n");
 
             Medlem medlem = new Medlem(1, "Jens", "Jens123@gmail.com", "78609520", false);
             DateTime bookingDato = new DateTime(2024, 12, 18, 14, 30, 0);
@@ -49,9 +49,11 @@
             bookingRepo.AddBooking(booking1);
             Console.WriteLine(booking1.ToString());
 
-            Console.WriteLine("Booking slut");
 
-            //Medlem test - Tobias
+
+            Console.WriteLine("\nBooking slut");
+
+            //Medlem test
             Console.WriteLine();
             Console.WriteLine("Medlem test start\n");
             MedlemRepo medlemRepo = new MedlemRepo();

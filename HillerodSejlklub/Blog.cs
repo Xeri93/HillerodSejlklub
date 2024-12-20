@@ -11,7 +11,6 @@ namespace HillerodSejlklub
 		public int Id;
 		public string Titel;
 		public Dictionary<int, Begivenhed> begivenhedDict = new Dictionary<int, Begivenhed>();
-
 		public Blog() { }
 
 		public Blog(int id, string titel)
@@ -25,9 +24,14 @@ namespace HillerodSejlklub
 			return $"Id: {Id}, Titel: {Titel}";
 		}
 		// Tilføj begivenhed
-		public void AddBegivenhed(Begivenhed begivenhed)
+		public bool AddBegivenhed(Begivenhed begivenhed)
 		{
-			begivenhedDict[begivenhed.Id] = begivenhed;
+			if (begivenhedDict.ContainsKey(begivenhed.Id))
+			{
+				begivenhedDict[begivenhed.Id] = begivenhed;
+				return true;
+			}
+			return false;
 		}
 
 		// Fjern begivenhed

@@ -8,16 +8,14 @@ namespace HillerodSejlklub
 {
 	public class Begivenhed
 	{
-		public Blog Blog { get; set; }
 		public int Id { get; set; }
 		public DateTime BegivenhedDato { get; set; }
 		public string Titel { get; set; }
 
 		public Begivenhed() { }
 
-		public Begivenhed(Blog blog, int id, DateTime begivenhedDato, string titel)
+		public Begivenhed(int id, DateTime begivenhedDato, string titel)
 		{
-			Blog = blog;
 			Id = id;
 			BegivenhedDato = begivenhedDato;
 			Titel = titel;
@@ -25,7 +23,7 @@ namespace HillerodSejlklub
 
 		public override string ToString()
 		{
-			return $"Blog: {Blog}, ID: {Id}, Dato: {BegivenhedDato.ToString("yyyy-MM-dd HH:mm")}, Titel: {Titel}";
+			return $"ID: {Id}, Dato: {BegivenhedDato.ToString("yyyy-MM-dd HH:mm")}, Titel: {Titel}";
 		}
 	}
 }
