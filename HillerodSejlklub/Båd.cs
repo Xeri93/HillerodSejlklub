@@ -22,7 +22,6 @@ namespace HillerodSejlklub
         public bool ErLejebåd { get; set; }
         public bool ErBooket { get; set; }
         public bool ErSejlklar { get; set; }
-        public string Vedligeholdelseslog { get; set; }
 
         public Båd( int id, string name, string bådType, string model, string sejlnummer,
             string motoroplysning, string mål, string byggeår, bool erLejebåd)
@@ -37,7 +36,6 @@ namespace HillerodSejlklub
             Byggeår = byggeår;
             ErLejebåd = erLejebåd;
             ErSejlklar = true;
-            Vedligeholdelseslog = "";
         }
         public override string ToString()
         {

@@ -74,32 +74,5 @@ namespace HillerodSejlklub
             }
             return false;
         }
-        //Create Vedligeholdelseslog
-        public bool UpdateVedligeholdelseslog(int id, string UpdateVedligeholdelseslog, bool erSejlklar)
-        {
-            foreach (Båd båd in både)
-            {
-                if (båd.Id == id)
-                {
-                    båd.Vedligeholdelseslog = UpdateVedligeholdelseslog;
-                    return true;
-                }
-            }
-            return false;
-        }
-        //Read Vedligeholdelseslog
-        public Båd? PrintVedligeholdelseslog(int id)
-        { 
-            foreach (Båd båd in både)
-            {
-                if (båd.Id == id)
-                {
-                    Console.WriteLine(båd.Vedligeholdelseslog);
-                    Console.WriteLine(båd.ErSejlklar);
-                    return null;
-                }
-            }
-            return null;
-        }
     }
 }
