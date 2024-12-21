@@ -8,69 +8,60 @@ namespace HillerodSejlklub
 {
 	public class Blog
 	{
-		public int Id;
-		public string Titel;
-		public Dictionary<int, Begivenhed> begivenhedDict = new Dictionary<int, Begivenhed>();
-		public Blog() { }
+		public Dictionary<int, Begivenhed> _begivenheder = new Dictionary<int, Begivenhed>();
 
-		public Blog(int id, string titel)
+		// Add begivenhed
+		public void AddBegivenhed(int id, DateTime begivenhedDato, string titel)
 		{
-			Id = id;
-			Titel = titel;
+			Begivenhed begivenhed = new Begivenhed(id, begivenhedDato, titel);
+			_begivenheder.TryAdd(begivenhed.Id, begivenhed);
 		}
 
-		public override string ToString()
+		// fjerne begivenhed
+		public Begivenhed DeleteBegivenhed(int id)
 		{
-			return $"Id: {Id}, Titel: {Titel}";
-		}
-		// Tilføj begivenhed
-		public bool AddBegivenhed(Begivenhed begivenhed)
-		{
-			if (begivenhedDict.ContainsKey(begivenhed.Id))
+			// Forsøg at fjerne begivenheden og returner den, hvis den blev slettet
+			if (_begivenheder.Remove(id, out Begivenhed deletedBegivenhed))
 			{
-				begivenhedDict[begivenhed.Id] = begivenhed;
-				return true;
+				return deletedBegivenhed;
 			}
-			return false;
-		}
-
-		// Fjern begivenhed
-		public bool RemoveBegivenhed(int id)
-		{
-			return begivenhedDict.Remove(id);
-		}
-
-		// Opdater begivenhed
-		public bool UpdateBegivenhed(int id, Begivenhed updatedBegivenhed)
-		{
-			if (begivenhedDict.ContainsKey(id))
+			else
 			{
-				begivenhedDict[id] = updatedBegivenhed;
-				return true;
+				return null; // Hvis ingen begivenhed blev fjernet, returner null
 			}
-			return false;
 		}
 
-		// Læs begivenhed
-		public Begivenhed? ReadBegivenhed(int id)
+		// Get begivenhed
+		public Begivenhed GetBegivenhed(int id)
 		{
-			begivenhedDict.TryGetValue(id, out Begivenhed? begivenhed);
+			_begivenheder.TryGetValue(id, out Begivenhed begivenhed);
 			return begivenhed;
 		}
 
-		// filtrerer efter dato
-		//public List<Begivenhed> BegivenhedDatoFilter(DateTime filterDato)
-		//{
-		//	List<Begivenhed> filtreredeBegivenheder = new List<Begivenhed>();
+		// Update begivenhed
+		public Begivenhed UpdateBegivenhed(int id, Begivenhed begivenhed)
+		{
+			if (_begivenheder.ContainsKey(id))
+			{
+				_begivenheder[id] = begivenhed;
+				return begivenhed; // Returner den opdaterede begivenhed
+			}
+			return null; // Returner null, hvis begivenheden ikke blev fundet
+		}
 
-		//	foreach (var begivenhed in begivenhedDict.Values)
-		//	{
-		//		if (begivenhed.Dato.Date > filterDato.Date)
-		//		{
-		//			filtreredeBegivenheder.Add(begivenhed);
-		//		}
-		//	}
-		//	return filtreredeBegivenheder;
-		//}
+		// Filtrer begivenheder by date
+		public List<Begivenhed> FiltrerByDate(DateTime filterDate)
+		{
+			List<Begivenhed> filteredBegivenheder = new List<Begivenhed>();
+
+			foreach (var begivenhed in _begivenheder.Values)
+			{
+				if (begivenhed.BegivenhedDato.Date == filterDate.Date)
+				{
+					filteredBegivenheder.Add(begivenhed);
+				}
+			}
+			return filteredBegivenheder;
+		}
 	}
 }

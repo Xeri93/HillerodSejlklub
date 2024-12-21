@@ -9,65 +9,74 @@ namespace HillerodSejlklub
 {
 	public class BookingRepo
 	{
-		public List<Booking> bookings = new List<Booking>();
+		public List<Booking> bookinger;
 
-		// Adds booking
-		public void AddBooking(Booking booking)
+		public BookingRepo()
 		{
-			bookings.Add(booking);
+			bookinger = new List<Booking>();
 		}
 
-		// Remove booking
-		public bool RemoveBooking(int id)
+		// Create metode
+		public void CreateBooking(Booking booking)
 		{
-			foreach (Booking booking in bookings)
+			bookinger.Add(booking);
+		}
+
+		// Read metode
+		public Booking? GetBooking(int id)
+		{
+			foreach (var b in bookinger)
 			{
-				if (booking.Id == id)
+				if (b.Id.Equals(id))
 				{
-					return bookings.Remove(booking);
+					return b;
 				}
 			}
-			return false;
+			return null;
 		}
 
-		// Update booking
-		public bool UpdatedBooking(int id, Booking updatedBooking)
+		// Update metode
+		public bool UpdateBooking(int id, Booking booking)
 		{
-			foreach (Booking booking in bookings)
+			foreach (var b in bookinger)
 			{
-				if (booking.Id == id)
+				if (b.Id.Equals(id))
 				{
-					booking.Id = updatedBooking.Id;
-					booking.BookingDato = updatedBooking.BookingDato;
-					booking.ErGodkendt = updatedBooking.ErGodkendt;
-
+					b.Id = booking.Id;
+					b.Medlem = booking.Medlem;
+					b.Båd = booking.Båd;
+					b.BookingDato = booking.BookingDato;
+					b.ErGodkendt = booking.ErGodkendt;
 					return true;
 				}
 			}
 			return false;
 		}
 
-		// Read booking
-		public Booking? ReadBooking(int id)
+		// Delete metode
+		public Booking? DeleteBooking(int id)
 		{
-			foreach (Booking booking in bookings)
+			foreach (var b in bookinger)
 			{
-				if (booking.Id == id)
+				if (b.Id.Equals(id))
 				{
-					return booking;
+					bookinger.Remove(b);
+					return b;
 				}
 			}
 			return null;
 		}
 
-		// Search medlem
-		public List<Booking> SearchMedlem(Medlem medlem)
+		public List<Booking> SearchBookingByDate(DateTime searchDate)
 		{
+			// Opret en liste til de fundne bookinger
 			List<Booking> result = new List<Booking>();
 
-			foreach (Booking booking in bookings)
+			// Gennemgå alle bookinger
+			foreach (Booking booking in bookinger)
 			{
-				if (booking.Medlem == medlem)
+				// Hvis datoen matcher (uden tid) så tilføj booking til resultatet
+				if (booking.BookingDato.Date == searchDate.Date)
 				{
 					result.Add(booking);
 				}
@@ -75,5 +84,4 @@ namespace HillerodSejlklub
 			return result;
 		}
 	}
-
 }

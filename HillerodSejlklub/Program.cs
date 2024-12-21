@@ -5,10 +5,11 @@
         static void Main()
         {
             //Create ny båd
-            Båd båd = new Båd(1, "Armadillo", "Sejlskib", "xdd", "123"
+            Båd båd1 = new Båd(1, "Armadillo", "Sejlskib", "xdd", "123"
                 , "mega god motor", "5m x 4.20m x 6.9m", "2000", false);
+			Båd båd2 = new Båd(2, "Shark", "Jolle", "Mercury", "32", "Benzin motor", "14 fod", "2002", true);
             BådRepo bådrepo = new BådRepo();
-            bådrepo.CreateBåd(båd);
+            bådrepo.CreateBåd(båd1);
             Console.WriteLine(bådrepo.ReadBåd(1));
 
             //Create ny Vedligeholdelseslog
@@ -17,40 +18,72 @@
             logRepo.CreateLog(log);
             Console.WriteLine(logRepo.GetLog(1));
 
-            //Create ny blog og begivenhed
-            Console.WriteLine();
-            Console.WriteLine("Begivenhed start\n");
+			Console.WriteLine("-----Begivenhed start-----");
+			// Opret begivenheder
+			Begivenhed begivenhed1 = new Begivenhed(1, new DateTime(2024, 12, 25, 18, 30, 0), "Sport");
+			Begivenhed begivenhed2 = new Begivenhed(2, new DateTime(2024, 12, 25, 12, 00, 0), "Sejlads");
 
-            Blog blog = new Blog(1, "Hillerød sejlklub");
-            DateTime begivenhedDato1 = new DateTime(2024, 11, 18, 8, 30, 0);
-            DateTime begivenhedDato2 = new DateTime(2024, 11, 19, 9, 0, 0);
-            Begivenhed begivenhed1 = new Begivenhed(1, begivenhedDato1, "Sport bådsejlads");
-            Begivenhed begivenhed2 = new Begivenhed(2, begivenhedDato2, "Træning");
+			// Add begivenheder til blog
+			Blog blog = new Blog();
+			Console.WriteLine("Begivenheder i bloggen:");
+			blog.AddBegivenhed(begivenhed1.Id, begivenhed1.BegivenhedDato, begivenhed1.Titel);
+			blog.AddBegivenhed(begivenhed2.Id, begivenhed2.BegivenhedDato, begivenhed2.Titel);
 
-            // Add begivenhed til blog
-            blog.AddBegivenhed(begivenhed1);
-            blog.AddBegivenhed(begivenhed2);
+			// Skriver begivenheder ud
+			foreach (var begivenhed in blog._begivenheder.Values)
+			{
+				Console.WriteLine(begivenhed.ToString());
+			}
 
-            foreach (var begivenhed in blog.begivenhedDict.Values)
-            {
-                Console.WriteLine(begivenhed.ToString());
-            }
-            Console.WriteLine("\nBegivenhed slut");
+			Console.WriteLine("\nTest af UpdateBegivenhed");
+			Begivenhed updatedEvent = blog.UpdateBegivenhed(1, new Begivenhed(1, new DateTime(2024, 12, 25, 20, 0, 0), "Opdateret Sport"));
 
-            // Booking
-            Console.WriteLine();
-            Console.WriteLine("Booking start\n");
+			if (updatedEvent != null)
+			{
+				Console.WriteLine("Opdateret begivenhed: " + updatedEvent.ToString());
+			}
+			else
+			{
+				Console.WriteLine("Begivenheden blev ikke fundet og kunne ikke opdateres.");
+			}
 
-            Medlem medlem = new Medlem(1, "Jens", "Jens123@gmail.com", "78609520", false);
-            DateTime bookingDato = new DateTime(2024, 12, 18, 14, 30, 0);
-            Booking booking1 = new Booking(1, medlem, båd, bookingDato, true);
-            BookingRepo bookingRepo = new BookingRepo();
-            bookingRepo.AddBooking(booking1);
-            Console.WriteLine(booking1.ToString());
+			// Fundne begivenheder
+			Console.WriteLine("\nTest af GetBegivenhed");
+			Begivenhed fundetBegivenhed = blog.GetBegivenhed(begivenhed1.Id);
 
+			if (fundetBegivenhed != null)
+			{
+				Console.WriteLine("Fundet begivenhed: " + fundetBegivenhed.ToString());
+			}
+			else
+			{
+				Console.WriteLine("Begivenheden blev ikke fundet.");
+			}
 
+			// Filtrer på datoen 25 december 2024 
+			DateTime filterDate = new DateTime(2024, 12, 25);
+			List<Begivenhed> begivenhederForDate = blog.FiltrerByDate(filterDate);
 
-            Console.WriteLine("\nBooking slut");
+			// Udskriv de filtrerede begivenheder
+			foreach (var begivenhed in begivenhederForDate)
+			{
+				Console.WriteLine(begivenhed);
+			}
+
+			// Fjernelse af begivenhed
+			Console.WriteLine("\nTest af DeleteBegivenhed");
+			Begivenhed deletedBegivenhed = blog.DeleteBegivenhed(begivenhed1.Id);
+
+			if (deletedBegivenhed != null)
+			{
+				Console.WriteLine("Begivenhed slettet: " + deletedBegivenhed.ToString());
+			}
+			else
+			{
+				Console.WriteLine("Begivenheden kunne ikke slettes, da den ikke blev fundet.");
+			}
+
+			Console.WriteLine("\n-----Begivenhed slut-----");
 
             //Medlem test
             Console.WriteLine();
@@ -98,7 +131,69 @@
                 Console.WriteLine($"Registreret medlem med email: {search.Email} - {search.Navn}");
             }
             Console.WriteLine("\nMedlem test slut");
-        }
+
+			// Booking
+			Console.WriteLine("-----Booking start-----\n");
+
+			// Opret en ny instans af BookingRepo
+			BookingRepo bookingRepo = new BookingRepo();
+
+			// Opret nogle testbookinger
+			Booking booking1 = new Booking(1, medlem1, båd1, new DateTime(2024, 12, 25), true);
+			Booking booking2 = new Booking(2, medlem2, båd2, new DateTime(2024, 12, 26, 12, 00, 00), true);
+
+			// Create test
+			bookingRepo.CreateBooking(booking1);
+			bookingRepo.CreateBooking(booking2);
+			Console.WriteLine("Create method test");
+			Console.WriteLine($"Registrerede bookinger i Create test: {bookingRepo.bookinger.Count}");
+			Console.WriteLine();
+
+			// Read test
+			Console.WriteLine("Read method test");
+			var readBooking = bookingRepo.GetBooking(1);
+			if (readBooking != null)
+			{
+				Console.WriteLine($"GetBooking registreret: {readBooking}");
+			}
+			Console.WriteLine();
+
+			// Opret en søgedato
+			DateTime searchDate = new DateTime(2024, 12, 25);
+
+			// Brug SearchBookingByDate-metoden
+			List<Booking> foundBookings = bookingRepo.SearchBookingByDate(searchDate);
+
+			// Udskriv de fundne bookinger
+			if (foundBookings.Count > 0)
+			{
+				Console.WriteLine($"Bookinger for {searchDate.ToString("yyyy-MM-dd")}:");
+				foreach (var booking in foundBookings)
+				{
+					Console.WriteLine(booking.ToString());
+				}
+			}
+			else
+			{
+				Console.WriteLine($"Ingen bookinger fundet for {searchDate.ToString("yyyy-MM-dd")}");
+			}
+
+			// Update af booking
+			Console.WriteLine("Update method test");
+			Console.WriteLine("Booking før Update");
+			Console.WriteLine(booking1);
+			bookingRepo.UpdateBooking(1, new Booking(1, medlem1, båd1, new DateTime(2024, 12, 25), false)); // Ændring
+			Console.WriteLine("\nBooking efter Update");
+			Console.WriteLine(booking1);
+			Console.WriteLine();
+
+			// Delete test
+			Console.WriteLine("\nDelete method test");
+			bookingRepo.DeleteBooking(1);
+			Console.WriteLine($"Registrerede bookinger efter Delete Test: {bookingRepo.bookinger.Count}");
+			Console.WriteLine();
+			Console.WriteLine("-----Booking slut-----\n");
+		}
     }
 }
 
