@@ -22,7 +22,7 @@ namespace HillerodSejlklub
         }
 
         // Read
-        public List<Vedligeholdelseslog> GetLogsForBåd(int bådId)
+        public List<Vedligeholdelseslog> ReadLog(int bådId)
         {
             List<Vedligeholdelseslog> result = new List<Vedligeholdelseslog>();
             foreach (var log in logs)
@@ -33,11 +33,6 @@ namespace HillerodSejlklub
                 }
             }
             return result;
-        }
-
-        public Vedligeholdelseslog? GetLog(int logId)
-        {
-            return logs.FirstOrDefault(log => log.LogId == logId);
         }
 
         // Update

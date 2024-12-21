@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("HillerodSejlklub")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+099a5e6f02b1219c1196c0508b0114825a19853b")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+663aa61a6b0d34cd66c350282fe0c03612aa7f6d")]
 [assembly: System.Reflection.AssemblyProductAttribute("HillerodSejlklub")]
 [assembly: System.Reflection.AssemblyTitleAttribute("HillerodSejlklub")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
